@@ -1,8 +1,9 @@
 import * as dotenv from 'dotenv'
+import prod from './config/prod'
 dotenv.config()
 
 import app from './server'
 
-app.listen(3001, () => {
-    console.log("hey this is test")
+app.listen(prod.port, () => {
+    console.log(`hey your server is running at ${prod.port}`)
 })

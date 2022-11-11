@@ -29,3 +29,12 @@ export const createPlace= async (req, res) => {
     })
     res.json({data:place})
 }
+
+export const deletePlace = async (req, res) => {
+    const deleted = await prisma.place.delete({
+        where:{
+            id: req.params.id
+        }
+    })
+    res.json({data:`${deleted.name} deleted Successfully!!!`})
+}

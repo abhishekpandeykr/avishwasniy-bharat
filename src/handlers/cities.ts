@@ -2,11 +2,7 @@ import prisma from "../db";
 
 // get all cities
 export const getAllCities = async (req, res) => {
-    const cities = await prisma.city.findMany({
-        include:{
-            Place: true
-        }
-    })
+    const cities = await prisma.city.findMany({})
     res.json({data:cities})
 }
 
@@ -30,6 +26,9 @@ export const getOneCity = async (req, res) => {
     const city = await prisma.city.findFirst({
         where : {
             id: req.params.id
+        },
+        include : {
+            Place:true
         }
     })
     res.json({data:city})

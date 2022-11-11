@@ -54,3 +54,17 @@ export const deleteDestination = async (req, res) => {
     })
     res.json({data: deleted})
 }
+
+// get all the places associated with the detination
+
+export const getPlacesBasedOnDestination = async (req, res) => {
+    const places = await prisma.destinations.findMany({
+        where: {
+            id:req.params.id
+        },
+        include: {
+            Place:true
+        }
+    })
+    res.json({data:places})
+}

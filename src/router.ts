@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { createCity, deleteCity, getAllCities, getOneCity, updateCity } from './handlers/cities';
-import { createDestination, deleteDestination, getDestinations, getOneDestination, updateDestination } from './handlers/destinations';
+import { createDestination, deleteDestination, getDestinations, getOneDestination, getPlacesBasedOnDestination, updateDestination } from './handlers/destinations';
 import { createPlace, getAllPlaces, getPlace } from './handlers/places';
 import { protect } from './modules/auth';
 import { handleValidationError } from './modules/middlewares';
@@ -14,6 +14,7 @@ const router = Router()
  */
 router.get("/destinations", getDestinations)
 router.get("/destination/:id", getOneDestination)
+router.get("/destination/places/:id", getPlacesBasedOnDestination)
 router.put("/destination/:id",protect, body("label").isString(), body("image").isString(), handleValidationError, deleteDestination)
 router.post("/destination",protect, body("label").isString(), 
             body("image").isString(), 
